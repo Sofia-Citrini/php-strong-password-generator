@@ -1,4 +1,20 @@
 <?php
+    $passwordLenght = $_GET["number"] ?? '';
+
+    function generateRandomPassword($number){
+        $lowercaseLetters = "abcdefghilmnopqrstuvwyxz";
+        $uppercaseLetters = "ABCDEFGHILMNOPQRSTUVWXYZ";
+        $numbers = "0123456789";
+        $symbols = "!?@#$&*";
+
+        $charPassword = $lowercaseLetters . $uppercaseLetters . $numbers . $symbols;
+
+        $shuffleChar = str_shuffle($charPassword);
+
+        $password = substr($shuffleChar, 0, $number);
+
+        return $password;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -24,20 +40,24 @@
         <h3 class="text-center">Genera una password sicura</h3>
 
         <div class="container">
-            <form action="">
+            <form action="" method="GET">
                 <div class="row g-3 align-items-center py-4">
                     <div class="col-6">
                         <label class="form-label">Lunghezza password</label>
                     </div>
                     <div class="col-6">
-                        <input type="number" class="form-control" placeholder="Inserisci un numero">
+                        <input type="number" class="form-control" placeholder="Inserisci un numero" name="number">
                     </div>
                 </div>  
             
                 <button type="submit" class="btn btn-primary">Invia</button>
-                <button type="submit" class="btn btn-secondary">Annulla</button>
+                <button type="refresh" class="btn btn-secondary">Annulla</button>
             </form>
         </div>
+
+        <div class="py-3"><?php echo "lunghezza password:" . " " . $passwordLenght?></div>
+        <div><?php echo "password:" . " " . generateRandomPassword($passwordLenght)?></div>
+        
     </main>
     
 </body>

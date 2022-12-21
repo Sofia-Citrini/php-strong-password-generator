@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="py-3">
         <div class="container text-center">
             <h1>Strong Password Generator</h1>
         </div>
@@ -26,11 +26,11 @@
     <main>
         <h3 class="text-center">Genera una password sicura</h3>
 
-        <div class="container">
+        <div class="container bg-light my-5 pb-3">
             <form action="" method="GET">
                 <div class="row g-3 align-items-center py-4">
                     <div class="col-6">
-                        <label class="form-label">Lunghezza password</label>
+                        <label class="form-label">Lunghezza password:</label>
                     </div>
                     <div class="col-6">
                         <input type="number" class="form-control" placeholder="Inserisci un numero" name="number">
@@ -42,8 +42,11 @@
             </form>
         </div>
 
-        <div class="py-3"><?php echo "lunghezza password:" . " " . $passwordLenght?></div>
-        <div><?php echo "password:" . " " . generateRandomPassword($_GET["number"] ?? "")?></div>
+        <section class="container py-3 <?php echo ($passwordLenght === "") ? 'd-none' : 'd-block'?>">
+            <div class="py-2"><?php echo "Lunghezza password:" . " " . $passwordLenght?></div>
+            <div class="alert alert-success"><?php echo "Password generata:" . " " . generateRandomPassword($_GET["number"] ?? "")?></div>
+        </section>
+        
         
     </main>
     

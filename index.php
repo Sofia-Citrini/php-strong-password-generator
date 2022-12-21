@@ -1,20 +1,7 @@
 <?php
+    include_once __DIR__ . '/function.php';
+
     $passwordLenght = $_GET["number"] ?? '';
-
-    function generateRandomPassword($number){
-        $lowercaseLetters = "abcdefghilmnopqrstuvwyxz";
-        $uppercaseLetters = "ABCDEFGHILMNOPQRSTUVWXYZ";
-        $numbers = "0123456789";
-        $symbols = "!?@#$&*";
-
-        $charPassword = $lowercaseLetters . $uppercaseLetters . $numbers . $symbols;
-
-        $shuffleChar = str_shuffle($charPassword);
-
-        $password = substr($shuffleChar, 0, $number);
-
-        return $password;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +43,7 @@
         </div>
 
         <div class="py-3"><?php echo "lunghezza password:" . " " . $passwordLenght?></div>
-        <div><?php echo "password:" . " " . generateRandomPassword($passwordLenght)?></div>
+        <div><?php echo "password:" . " " . generateRandomPassword($_GET["number"] ?? "")?></div>
         
     </main>
     

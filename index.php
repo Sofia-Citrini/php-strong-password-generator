@@ -1,7 +1,17 @@
 <?php
     include_once __DIR__ . '/function.php';
 
-    $passwordLenght = $_GET["number"] ?? '';
+    session_start();
+
+    $passwordLength = $_GET["number"] ?? '';
+
+    if (isset($_GET["number"])) {
+        $_SESSION["passwordLength"] = $passwordLength;
+        $_SESSION["generatePassword"] = generateRandomPassword($passwordLength);
+        
+        header ('Location: password.php');
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Passwor generator</title>
+    <title>Password generator</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 </head>
@@ -42,11 +52,10 @@
             </form>
         </div>
 
-        <section class="container py-3 <?php echo ($passwordLenght === "") ? 'd-none' : 'd-block'?>">
-            <div class="py-2"><?php echo "Lunghezza password:" . " " . $passwordLenght?></div>
-            <div class="alert alert-success"><?php echo "Password generata:" . " " . generateRandomPassword($_GET["number"] ?? "")?></div>
-        </section>
-        
+        <!-- <section class="container py-3 <?php echo ($passwordLength === "") ? 'd-none' : 'd-block'?>">
+            <div class="py-2"><?php echo "Lunghezza password:" . " " . $passwordLength?></div>
+            <div class="alert alert-success"><?php echo "Password generata:" . " " . generateRandomPassword($passwordLength)?></div>
+        </section> -->
         
     </main>
     
